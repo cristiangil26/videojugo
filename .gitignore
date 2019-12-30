@@ -1,0 +1,4 @@
+target/
+.idea/
+Videojuego.iml
+.gitignore
