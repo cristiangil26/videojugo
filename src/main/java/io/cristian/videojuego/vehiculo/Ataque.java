@@ -23,7 +23,15 @@ public class Ataque {
         }
         return sumaPersonas;
     }
-
+    public double capacidadCarga(){
+        int capacidadcarga = 0;
+        if(vehiculos.size() > 0){
+            for (Vehiculo vehiculo: vehiculos){
+                capacidadcarga+=vehiculo.getCapacidadToneladas();
+            }
+        }
+        return capacidadcarga;
+    }
     public ArrayList<Vehiculo> getVehiculos() {
         return vehiculos;
     }

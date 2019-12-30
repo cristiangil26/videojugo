@@ -49,4 +49,9 @@ public class AtaqueTest {
     public void getNumPersonas() {
         Assert.assertEquals("el nùmero de personas no coincide",207,ataque.getNumPersonas());
     }
+
+    @Test
+    public void capacidadCarga() {
+        Assert.assertEquals("la capacidad total en toneladas no coinciden",95.0,ataque.capacidadCarga(),0);
+    }
 }
