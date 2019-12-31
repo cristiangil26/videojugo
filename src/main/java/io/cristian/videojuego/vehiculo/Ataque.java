@@ -70,6 +70,9 @@ public class Ataque {
        }
        return ataque;
     }
+    public String  ataqueMetralladorasBombas(){
+        return this.ataqueAmetralladora()+"-"+this.ataqueBombarderos();
+    }
 
     public ArrayList<Vehiculo> getVehiculos() {
         return vehiculos;
@@ -108,5 +111,7 @@ public class Ataque {
         System.out.println("Ataque con cuchillo");
         motocicleta.setArmamentos(armamentoTres);
         System.out.println(ataque.ataqueCuchillo());
+        System.out.println("Ataque amatralladoras y bombas");
+        System.out.println(ataque.ataqueMetralladorasBombas());
     }
 }
