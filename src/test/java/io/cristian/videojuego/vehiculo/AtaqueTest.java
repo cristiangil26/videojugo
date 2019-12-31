@@ -2,6 +2,7 @@ package io.cristian.videojuego.vehiculo;
 
 import io.cristian.videojuego.armamento.Ametralladora;
 import io.cristian.videojuego.armamento.Armamento;
+import io.cristian.videojuego.armamento.Bomba;
 import org.junit.Assert;
 import org.junit.Before;
 import org.junit.Test;
@@ -21,7 +22,7 @@ public class AtaqueTest {
     private Crucero crucero;
     private PortaAvion portaAvion;
     private ArrayList<Armamento> armamentoUno;
-    private Armamento armamento;
+    private ArrayList<Armamento> armamentoDos;
     @Before
     public void setUp() throws Exception {
         ataque = new Ataque();
@@ -33,8 +34,9 @@ public class AtaqueTest {
         avion = new Avion(30,10,"Speed fighter");
         crucero = new Crucero(50,20,"Crucero tipo Alabama");
         portaAvion = new PortaAvion(100,50,"Porta aviòn tipo Bismarck");
-        armamento = new Armamento(20);
         armamentoUno = new ArrayList<Armamento>();
+        armamentoDos = new ArrayList<Armamento>();
+        armamentoDos.add(new Bomba(20));
         armamentoUno.add(new Ametralladora(10));
 
         ataque.adicionarVehiculo(jeep);
@@ -67,5 +69,12 @@ public class AtaqueTest {
         motocicleta.setArmamentos(armamentoUno);
         Assert.assertEquals("el ataque de los vehículos que poseen ametralladores no es el correcto",
                 "Motocileta Harley disparar ráfagas de balas ",ataque.ataqueAmetralladora());
+    }
+
+    @Test
+    public void ataqueBombarderos() {
+        avion.setArmamentos(armamentoDos);
+        Assert.assertEquals("el ataque de los bombarderos no es igual",
+                "Speed fighter bomba soltar a discresión ",ataque.ataqueBombarderos());
     }
 }

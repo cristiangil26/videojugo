@@ -46,6 +46,16 @@ public class Ataque {
            }
        }
        return ataque;
+    } public String ataqueBombarderos(){
+        String ataque = "";
+       for (Vehiculo vehiculo: this.getVehiculos()){
+           for (Armamento armamento:vehiculo.getArmamentos()) {
+               if(armamento instanceof Bomba) {
+                   ataque += vehiculo.getTipo() +" "+((Bomba) armamento).doBoom()+" ";
+               }
+           }
+       }
+       return ataque;
     }
 
     public ArrayList<Vehiculo> getVehiculos() {
@@ -59,18 +69,26 @@ public class Ataque {
     public static void main(String[] args) {
         Ataque ataque = new Ataque();
         Tanque tanque = new Tanque(6,4,"Tanque sherman M4");
-        ArrayList<Armamento> armamentos = new ArrayList<Armamento>();
-        armamentos.add(new Ametralladora(10));
-        tanque.setArmamentos(armamentos);
+        ArrayList<Armamento> armamentoUno = new ArrayList<Armamento>();
+        ArrayList<Armamento> armamentoDos = new ArrayList<Armamento>();
+        armamentoUno.add(new Ametralladora(10));
+        armamentoDos.add(new Bomba(20));
         Jeep jeep = new Jeep(4,2,"jeep de reconocimiento");
         Motocicleta motocicleta = new Motocicleta(2,0,"Motocileta Harley");
-
-
-        motocicleta.setArmamentos(armamentos);
+        Avion avion = new Avion(50,10,"Speed fighter");
+        Bombardero bombardero = new Bombardero(4,5,"Bombardero B56");
+        avion.setArmamentos(armamentoDos);
+        bombardero.setArmamentos(armamentoDos);
+        tanque.setArmamentos(armamentoUno);
+        motocicleta.setArmamentos(armamentoUno);
         ataque.adicionarVehiculo(jeep);
         ataque.adicionarVehiculo(tanque);
         ataque.adicionarVehiculo(motocicleta);
+        ataque.adicionarVehiculo(avion);
+        ataque.adicionarVehiculo(bombardero);
         System.out.println("Ataque vehiculos que poseen ametralladoras:");
         System.out.println(ataque.ataqueAmetralladora());
+        System.out.println("Ataque de los bombarderos");
+        System.out.println(ataque.ataqueBombarderos());
     }
 }
