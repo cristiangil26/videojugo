@@ -3,6 +3,7 @@ package io.cristian.videojuego.vehiculo;
 import io.cristian.videojuego.armamento.Ametralladora;
 import io.cristian.videojuego.armamento.Armamento;
 import io.cristian.videojuego.armamento.Bomba;
+import io.cristian.videojuego.armamento.Cuchillo;
 
 import java.util.ArrayList;
 
@@ -46,12 +47,24 @@ public class Ataque {
            }
        }
        return ataque;
-    } public String ataqueBombarderos(){
+    }
+    public String ataqueBombarderos(){
         String ataque = "";
        for (Vehiculo vehiculo: this.getVehiculos()){
            for (Armamento armamento:vehiculo.getArmamentos()) {
                if(armamento instanceof Bomba) {
                    ataque += vehiculo.getTipo() +" "+((Bomba) armamento).doBoom()+" ";
+               }
+           }
+       }
+       return ataque;
+    }
+    public String ataqueCuchillo(){
+        String ataque = "";
+       for (Vehiculo vehiculo: this.getVehiculos()){
+           for (Armamento armamento:vehiculo.getArmamentos()) {
+               if(armamento instanceof Cuchillo) {
+                   ataque += vehiculo.getTipo() +" "+((Cuchillo) armamento).doSlash()+" ";
                }
            }
        }
@@ -71,8 +84,10 @@ public class Ataque {
         Tanque tanque = new Tanque(6,4,"Tanque sherman M4");
         ArrayList<Armamento> armamentoUno = new ArrayList<Armamento>();
         ArrayList<Armamento> armamentoDos = new ArrayList<Armamento>();
+        ArrayList<Armamento> armamentoTres = new ArrayList<Armamento>();
         armamentoUno.add(new Ametralladora(10));
         armamentoDos.add(new Bomba(20));
+        armamentoTres.add(new Cuchillo(5));
         Jeep jeep = new Jeep(4,2,"jeep de reconocimiento");
         Motocicleta motocicleta = new Motocicleta(2,0,"Motocileta Harley");
         Avion avion = new Avion(50,10,"Speed fighter");
@@ -90,5 +105,8 @@ public class Ataque {
         System.out.println(ataque.ataqueAmetralladora());
         System.out.println("Ataque de los bombarderos");
         System.out.println(ataque.ataqueBombarderos());
+        System.out.println("Ataque con cuchillo");
+        motocicleta.setArmamentos(armamentoTres);
+        System.out.println(ataque.ataqueCuchillo());
     }
 }
